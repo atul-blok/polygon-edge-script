@@ -4,13 +4,6 @@ const interface = require("./abi.json");
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log(
-  process.env.PRIVATE_KEY,
-  process.env.ENDPOINT,
-  process.env.SOCKET_ENDPOINT,
-  process.env.CONTRACT_ADDRESS,
-  process.env.ACCOUNT
-);
 const provider = new HDWalletProvider(
   process.env.PRIVATE_KEY,
   process.env.ENDPOINT
