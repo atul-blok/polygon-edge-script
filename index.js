@@ -13,7 +13,12 @@ const provider = new HDWalletProvider(
 const web3 = new Web3(provider);
 
 const options2 = {
-  clientConfig: { keepalive: true, keepaliveInterval: 600000 },
+  clientConfig: {
+    keepalive: true,
+    keepaliveInterval: 600000,
+    // maxReceivedFrameSize: 10000000000,
+    // maxReceivedMessageSize: 10000000000,
+  },
   reconnect: { auto: true, delay: 1000, maxAttempts: 10, onTimeout: true },
 };
 
@@ -59,7 +64,7 @@ async function transaction() {
       .batchMint(account, parseInt(process.argv[2]))
       .send({
         from: account,
-        gas: "1000000",
+        gas: process.env.GAS_FEE,
       })
       .on("transactionHash", function (hash) {
         console.log(hash);
